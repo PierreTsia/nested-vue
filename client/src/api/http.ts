@@ -4,9 +4,13 @@ import axios, { AxiosInstance } from "axios";
 
 class Http {
   private service: AxiosInstance;
+  private readonly base_url =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://some-heroku-url.herokuapp.com";
   constructor() {
     this.service = axios.create({
-      baseURL: `http://localhost:3000/`,
+      baseURL: this.base_url,
 
       headers: {
         Authorization: `Bearer hard coded temp token`,
